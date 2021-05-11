@@ -22,7 +22,16 @@ clearly specified ;)
 Note. Please note that we are gonna test the funcion against a lot of different signatures and n's
 """
 
+from functools import reduce
 
 def flatonacci(signature: list, n: int) -> list:
-    # happy coding
-    pass
+    try:
+        if n < 0:
+            raise ValueError()
+        result = signature
+        for i in range(n-3):
+            result.append( reduce(lambda a,b: a+b , result[:-4:-1] ))
+        return result
+    except ValueError:
+        return []
+    
