@@ -27,11 +27,11 @@ from functools import reduce
 
 def check_type(value, check_non_negative=False):
     int_value=value 
-    if int_value is not int:
+    if type(int_value) != int:
         if type(int_value) == str:
             int_value = int(int_value)
-    else:
-        raise ValueError(f'value must be int or string but got {type(value)}')
+        else:
+            raise ValueError(f'value must be int or string but got {type(value)}')
     if(check_non_negative and int_value < 0):
         raise ValueError(f'value must be non negative but got {int_value}')
     return int_value
