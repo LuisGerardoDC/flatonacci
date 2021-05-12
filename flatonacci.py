@@ -26,6 +26,9 @@ from functools import reduce
 
 
 def check_type(value, check_non_negative=False):
+    ''' tests if the value is type int or string and if the 
+        value is non-negative
+    '''
     int_value=value 
     if type(int_value) != int:
         if type(int_value) == str:
