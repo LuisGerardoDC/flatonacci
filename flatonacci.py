@@ -24,14 +24,31 @@ Note. Please note that we are gonna test the funcion against a lot of different 
 
 from functools import reduce
 
+
+def check_type(value, check_non_negative=False):
+    int_value=value 
+    if int_value is not int:
+        if type(int_value) == str:
+            int_value = int(int_value)
+    else:
+        raise ValueError(f'value must be int or string but got {type(value)}')
+    if(check_non_negative and int_value < 0):
+        raise ValueError(f'value must be non negative but got {int_value}')
+    return int_value
+
+
 def flatonacci(signature: list, n: int) -> list:
+    result = []
     try:
-        if n < 0:
-            raise ValueError()
-        result = signature
+        n = check_type(n,check_non_negative=True)
+        for value in signature:
+            result.append(check_type(value))
+        
+        # genera faltonacci
         for i in range(n-3):
             result.append( reduce(lambda a,b: a+b , result[:-4:-1] ))
         return result
-    except ValueError:
+
+    except ValueError as ve:
+        print(ve)
         return []
-    
